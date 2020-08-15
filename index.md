@@ -1,37 +1,45 @@
-## Welcome to GitHub Pages
+# ecommerce
+E-Commerce resource
 
-You can use the [editor on GitHub](https://github.com/hcmue/ecommerce/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Payment
+* OnePay https://mtf.onepay.vn/developer/?page=modul_noidia
+* VNPay https://sandbox.vnpayment.vn/apis/downloads
+* Bảo Kim http://sandbox.baokim.vn/ and https://developer.baokim.vn/payment/
+* Paypal for ASP.NET Core https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Live Chat
+* Tawk to: https://www.tawk.to/
+* Subiz https://subiz.com/vi/
+* ZenDesk https://www.zendesk.com/
+* FB
 
-### Markdown
+## Url friendly
+Sử dụng route để định tuyến url dạng như sau cho tất cả trang chi tiết sản phẩm:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* host/dien-thoai/samsung-galaxy-note-9-64gb-gold
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Open Graph meta tags hỗ trợ các social
+Ví dụ cho FB:
+```
+<meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="When Great Minds Don’t Think Alike" />
+<meta property="og:description"        content="How much does culture influence creative thinking?" />
+<meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+* Bước 1: Thêm section ở trong layout template
+```
+@RenderSection("metasocials", required:false)
+```
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hcmue/ecommerce/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* Bước 2: Ở mỗi trang định nghĩa phần section này
+```
+@section metasocials{
+	<meta property="og:url" content="" />
+	<meta property="og:type" content="" />
+	<meta property="og:title" content="" />
+	<meta property="og:description" content="" />
+	<meta property="og:image" content="" />
+}
+```
