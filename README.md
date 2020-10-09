@@ -7,7 +7,6 @@ E-Commerce resource
 * Bảo Kim http://sandbox.baokim.vn/ and https://developer.baokim.vn/payment/
 * PayPal Checkout Integration Guide https://developer.paypal.com/docs/checkout/integrate/
 	* REST API documents https://developer.paypal.com/docs/api/overview/
-	* PayPal SDK 2.0.0 https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
 	* Paypal for ASP.NET Core https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
 
 ## Live Chat
