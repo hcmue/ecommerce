@@ -1,11 +1,13 @@
-﻿# ecommerce
+# ecommerce
 E-Commerce resource
 
 ## Payment
 * OnePay https://mtf.onepay.vn/developer/?page=modul_noidia
 * VNPay https://sandbox.vnpayment.vn/apis/downloads
 * Bảo Kim http://sandbox.baokim.vn/ and https://developer.baokim.vn/payment/
-* Paypal for ASP.NET Core https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
+* PayPal Checkout Integration Guide https://developer.paypal.com/docs/archive/checkout/integrate/
+	* PayPal SDK 2.0.0 https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
+	* Paypal for ASP.NET Core https://github.com/paypal/PayPal-NET-SDK/tree/2.0-beta
 
 ## Live Chat
 * Tawk to: https://www.tawk.to/
