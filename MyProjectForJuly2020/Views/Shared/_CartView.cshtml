@@ -1,0 +1,46 @@
+﻿@using MyProjectForJuly2020.Helpers
+@using MyProjectForJuly2020.ViewModels
+@{
+    var myCarts = Context.Session.Get<List<CartItem>>("GioHang");
+    if (myCarts == null)
+    {
+        myCarts = new List<CartItem>();
+    }
+}
+
+    <div class="mini-cart">
+        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
+            <a href="#">
+                <div class="cart-icon"><i class="icon-basket-loaded icons"></i><span class="cart-total">@myCarts.Sum(p => p.SoLuong)</span></div>
+                <div class="shoppingcart-inner hidden-xs"><span class="cart-title">Giỏ hàng</span> </div>
+            </a>
+        </div>
+        <div>            
+            <div class="top-cart-content">
+                @if (myCarts.Count == 0)
+                {
+                    <div class="block-subtitle">Giỏ hàng rỗng</div>}
+                else
+                {
+                    <ul id="cart-sidebar" class="mini-products-list">
+                        @foreach (var item in myCarts)
+                        {
+                            <li class="item odd">
+                                <a asp-action="Detail" asp-route-id="@item.MaHangHoa" asp-controller="HangHoa" title="@item.TenHh" class="product-image"><img src="~/Hinh/HangHoa/@item.Hinh" alt="@item.TenHh" width="65"></a>
+                                <div class="product-details">
+                                    <a href="#" title="Remove This Item" class="remove-cart"><i class="pe-7s-trash"></i></a>
+                                    <p class="product-name"><a asp-action="Detail" asp-route-id="@item.MaHangHoa" asp-controller="HangHoa">@item.TenHh</a> </p>
+                                    <strong>@item.SoLuong</strong> x <span class="price">@item.DonGia.ToVnd()</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+                <div class="top-subtotal">Tổng tiền: <span class="price">@myCarts.Sum(p => p.ThanhTien).ToVnd()</span></div>
+                <div class="actions">
+                    <button class="btn-checkout" type="button" onClick="location.href='checkout.html'"><i class="fa fa-check"></i><span>Checkout</span></button>
+                    <button class="view-cart" type="button" onClick="location.href='/GioHang'"><i class="fa fa-shopping-cart"></i><span>Giỏ hàng</span></button>
+                </div>
+            </div>
+        </div>
+    </div>

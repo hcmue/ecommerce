@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MyProjectForJuly2020.Data.Loai>
+
+@{
+    ViewData["Title"] = "Danh sách Loại";
+}
+
+<p>
+    <a asp-action="Create">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaLoaiCha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MoTa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiCha.TenLoai)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaLoai">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaLoai">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

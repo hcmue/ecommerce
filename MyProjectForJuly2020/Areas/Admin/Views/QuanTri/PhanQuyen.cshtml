@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyProjectForJuly2020.ViewModels.PhanQuyenVM>
+
+@{
+    ViewData["Title"] = "Phân Quyền";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+<form asp-action="PhanQuyen">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaKh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuanTri)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BanHang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThuKho)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachHang)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKh)
+                        <input type="hidden" value="@item.MaKh" name="MaKh" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoTen)
+                    </td>
+                    <td>
+                        <input class="check-role-item" @(item.QuanTri ? "checked" : "") type="checkbox" />
+                        <input name="QuanTri" value="@(item.QuanTri ? "true" : "false")" type="hidden" />
+                    </td>
+                    <td>
+                        <input class="check-role-item" @(item.BanHang ? "checked" : "") type="checkbox" />
+                        <input name="QuanTri" value="@(item.BanHang ? "true" : "false")" type="hidden" />
+                    </td>
+                    <td>
+                        <input class="check-role-item" @(item.ThuKho ? "checked" : "") type="checkbox" />
+                        <input name="QuanTri" value="@(item.ThuKho ? "true" : "false")" type="hidden" />
+                    </td>
+                    <td>
+                        <input class="check-role-item" @(item.KhachHang ? "checked" : "") type="checkbox" />
+                        <input name="QuanTri" value="@(item.KhachHang ? "true" : "false")" type="hidden" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-success">Cập nhật</button>
+</form>
+@section Scripts{ 
+<script>
+    $(document).ready(function () {
+        $(".check-role-item").click(function () {
+            if ($(this).is(":checked")) {
+                $(this).next().val("true");
+            }
+            else {
+                $(this).next().val("false");
+            }
+        });
+    });
+</script>
+}

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "ThanhToan";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+@using MyProjectForJuly2020.Helpers
+@model IEnumerable<MyProjectForJuly2020.ViewModels.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<section class="main-container col1-layout">
+    <div class="main container">
+        <div class="col-main">
+            <div class="cart">
+                <div class="page-content page-order">
+                    <form asp-action="ThanhToan">
+                        <div class="page-title">
+                            <h2>Thanh toán</h2>
+                        </div>
+
+                        <div class="order-detail-content">
+
+                            <h2>Thông tin người mua</h2>
+                            <h2>Thông tin hàng đặt mua</h2>
+                            <h2>Thông tin người nhận hàng</h2>
+                            <div>
+                                <input type="checkbox" name="CungThongTinNguoiMua" />Cùng thông tin người mua<br />
+                                <div class="row" style="margin-left:0 !important">
+                                    <span class="col-2"></span>
+                                    <label class="col-3">Người nhận</label>
+                                    <input class="col-7" name="NguoiNhan" />
+                                </div>
+                                <div class="row" style="margin-left:0 !important">
+                                    <span class="col-2"></span>
+                                    <label class="col-3">Địa chỉ giao</label>
+                                    <input class="col-7" name="DiaChiGiao" />
+                                </div>
+                            </div>
+                            <div class="cart_navigation">
+                                <button class="btn btn-primary">Thanh toán</button>
+                                <a asp-action="PaypalCheckout">
+                                    <img src="~/Hinh/paypal_checkout.gif" height="100" />
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

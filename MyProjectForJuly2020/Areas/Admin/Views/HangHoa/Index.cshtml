@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MyProjectForJuly2020.Data.HangHoa>
+
+@{
+    ViewData["Title"] = "Quản lý Hàng hóa";
+}
+
+<p>
+    <a asp-action="Create">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenHh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiamGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Loai)
+            </th>
+            <th>Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiamGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    <img src="~/Hinh/HangHoa/@item.Hinh" height="80" />
+                </td>
+                <td>
+                    @item.MoTa
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Loai.TenLoai)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaHangHoa">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaHangHoa">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MaHangHoa">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

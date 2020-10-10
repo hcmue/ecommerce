@@ -1,0 +1,62 @@
+﻿@using MyProjectForJuly2020.Helpers
+@model IEnumerable<MyProjectForJuly2020.ViewModels.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<section class="main-container col1-layout">
+    <div class="main container">
+        <div class="col-main">
+            <div class="cart">
+                <div class="page-content page-order">
+                    <div class="page-title">
+                        <h2>Giỏ hàng</h2>
+                    </div>
+
+                    <div class="order-detail-content">
+                        <div class="table-responsive">
+                            <table class="table table-bordered cart_summary">
+                                <thead>
+                                    <tr>
+                                        <th class="cart_product">Hàng hóa</th>
+                                        <th>Mô tả</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th class="action"><i class="fa fa-trash-o"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="cart_product"><a asp-action="Detail" asp-route-id="@item.MaHangHoa" asp-controller="HangHoa"><img src="~/Hinh/HangHoa/@item.Hinh" alt="@item.TenHh"></a></td>
+                                            <td class="cart_description">
+                                                <p class="product-name"><a asp-action="Detail" asp-route-id="@item.MaHangHoa" asp-controller="HangHoa">@item.TenHh</a></p>
+                                            </td>
+                                            <td class="price"><span>@item.DonGia.ToVnd()</span></td>
+                                            <td class="qty"><input class="form-control input-sm" type="text" value="@item.SoLuong"></td>
+                                            <td class="price"><span>@item.ThanhTien.ToVnd()</span></td>
+                                            <td class="action"><a asp-action="RemoveCartItem" asp-route-id="@item.MaHangHoa"><i class="icon-close"></i></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3"><strong>Tổng tiền</strong></td>
+                                        <td colspan="2"><strong>@Model.Sum(p => p.ThanhTien).ToVnd()</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="cart_navigation">
+                            <a class="continue-btn" asp-controller="HangHoa"><i class="fa fa-arrow-left"> </i>&nbsp; Tiếp tục mua hàng</a> <a class="checkout-btn" asp-action="ThanhToan"><i class="fa fa-check"></i> Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

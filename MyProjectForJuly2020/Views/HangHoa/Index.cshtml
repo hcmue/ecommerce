@@ -1,0 +1,133 @@
+﻿@model IEnumerable<MyProjectForJuly2020.ViewModels.HangHoaVM>
+
+@{
+    var danhMuc = string.IsNullOrEmpty(ViewBag.DanhMuc) ? "Tất cả hàng hóa" : ViewBag.DanhMuc;
+    ViewData["Title"] = danhMuc;
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<div class="main-container col1-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-main col-sm-12 col-xs-12">
+                <div class="shop-inner">
+                    <div class="page-title">
+                        <h2>@danhMuc</h2>
+                    </div>
+                    <div class="toolbar column">
+                        <div class="sorter">
+                            <div class="short-by">
+                                <label>Sort By:</label>
+                                <select>
+                                    <option selected="selected">Position</option>
+                                    <option>Name</option>
+                                    <option>Price</option>
+                                    <option>Size</option>
+                                </select>
+                            </div>
+                            <div class="short-by page">
+                                <label>Show:</label>
+                                <select>
+                                    <option selected="selected">16</option>
+                                    <option>20</option>
+                                    <option>25</option>
+                                    <option>30</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-grid-area">
+                        <ul class="products-grid">
+                            @foreach (var hh in Model)
+                            {
+                                <li class="item col-lg-3 col-md-4 col-sm-6 col-xs-6 ">
+                                    <div class="product-item">
+                                        <div class="item-inner">
+                                            <div class="product-thumbnail">
+                                                <div class="icon-sale-label sale-left">Sale</div>
+                                                <div class="icon-new-label new-right">New</div>
+                                                <div class="pr-img-area">
+                                                    <a title="Ipsums Dolors Untra" asp-controller="HangHoa" asp-action="Detail" asp-route-id="@hh.MaHh">
+                                                        <figure>
+                                                            <img class="first-img" src="~/Hinh/HangHoa/@hh.Hinh" alt="@hh.TenHh">
+                                                            <img class="hover-img" src="~/Hinh/HangHoa/@hh.Hinh" alt="@hh.TenHh">
+                                                        </figure>
+                                                    </a>
+                                                </div>
+                                                <div class="pr-info-area">
+                                                    <div class="pr-button">
+                                                        <div class="mt-button add_to_wishlist"> <a href="wishlist.html"> <i class="fa fa-heart"></i> </a> </div>
+                                                        <div class="mt-button add_to_compare"> <a href="compare.html"> <i class="fa fa-signal"></i> </a> </div>
+                                                        <div class="mt-button quick-view"> <a href="quick_view.html"> <i class="fa fa-search"></i> </a> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title"> <a title="Ipsums Dolors Untra" asp-controller="HangHoa" asp-action="Detail" asp-route-id="@hh.MaHh">@hh.TenHh</a> </div>
+                                                    <div class="item-content">
+                                                        <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
+                                                        <div class="item-price">
+                                                            <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
+                                                        </div>
+                                                        <div class="pro-action">
+                                                            <button type="button" class="add-to-cart" data-id="@hh.MaHh"><span> Thêm vào giỏ</span> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="pagination-area ">
+                        <ul>
+                            <li><a class="active" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".add-to-cart").click(function () {
+                $.ajax({
+                    url: "/GioHang/ThemVaoGio",
+                    data: {
+                        id: $(this).data("id"),
+                        qty: 1,
+                        addType: "ajax"
+                    },
+                    success: function (res) {
+                        //update cart
+                        $("#top_cart_contain").html(res);
+                        Swal.fire({
+                            title: 'Thêm giỏ hàng thành công.',
+                            text: "Chuyển tới trang giỏ hàng?",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Đồng ý',
+                            cancelButtonText: 'Ở lại'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/GioHang";
+                            }
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+}

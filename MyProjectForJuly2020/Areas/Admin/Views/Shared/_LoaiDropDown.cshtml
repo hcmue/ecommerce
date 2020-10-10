@@ -1,0 +1,27 @@
+﻿@model MyProjectForJuly2020.ViewModels.LoaiDropDownVM
+
+<select name="@Model.ControlName" id="@Model.ControlName" class="form-control">
+    <option value="">---Chọn---</option>
+    @{
+        var allLoai = Model.Items.ToList();
+        var level1 = allLoai.Where(lo => lo.MaLoaiCha == null);
+    }
+    @foreach (var lv1 in level1)
+    {
+        var level2 = allLoai.Where(lo => lo.MaLoaiCha == lv1.MaLoai).ToList();
+        <option value="@lv1.MaLoai">@lv1.TenLoai</option>
+        @foreach (var lv2 in level2)
+        {
+            var level3 = allLoai.Where(lo => lo.MaLoaiCha == lv2.MaLoai).ToList();
+            <option value="@lv2.MaLoai">
+                |___@lv2.TenLoai
+            </option>
+            @foreach (var lv3 in level3)
+            {
+                <option value="@lv3.MaLoai">
+                    |______@lv3.TenLoai
+                </option>
+            }
+        }
+    }
+</select>

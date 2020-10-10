@@ -1,0 +1,61 @@
+﻿@model MyProjectForJuly2020.ViewModels.RegisterVM
+
+@{
+    ViewData["Title"] = "Đăng ký Thành viên";
+    Layout = "~/Views/Shared/_ShopLayout.cshtml";
+}
+
+<section class="main-container col1-layout">
+    <div class="main container">
+        <div class="page-content">
+            <div class="account-login">
+                <div class="col-md-3 col-sm-2"></div>
+                <div class="col-md-6 col-sm-8">
+                    <div class="single-input p-bottom50 clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form asp-action="DangKy">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" class="form-control" />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="SoDienThoai" class="control-label"></label>
+                                        <input asp-for="SoDienThoai" class="form-control" />
+                                        <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="MatKhau" class="control-label"></label>
+                                        <input asp-for="MatKhau" class="form-control" />
+                                        <span asp-validation-for="MatKhau" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NhapLaiMatKhau" class="control-label"></label>
+                                        <input asp-for="NhapLaiMatKhau" class="form-control" />
+                                        <span asp-validation-for="NhapLaiMatKhau" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DiaChi" class="control-label"></label>
+                                        <input asp-for="DiaChi" class="form-control" />
+                                        <span asp-validation-for="DiaChi" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Đăng ký" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
